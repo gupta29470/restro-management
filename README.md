@@ -153,7 +153,7 @@ type User struct {
 ]
 ```
 
-##### 3. Get User
+##### 4. Get User
 > Endpoint: /users/:user_id
 > <br>
 > Method: GET

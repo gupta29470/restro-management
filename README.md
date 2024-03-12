@@ -821,3 +821,116 @@ type OrderItem struct {
   "unit_price": 329
 }
 ```
+
+
+
+<br>
+<br>
+
+## Invoice
+
+### Invoice Model
+
+```
+type Invoice struct {
+	ID               primitive.ObjectID `bson:"_id"`
+	Invoice_ID       string             `json:"invoice_id"`
+	Order_ID         string             `json:"order_id"`
+	Payment_Method   *string            `json:"payment_method" validate:"eq=CARD|eq=CASH|eq="`
+	Payment_Status   *string            `json:"payment_status" validate:"required,eq=PENDING|eq=PAID"`
+	Payment_Due_Date time.Time          `json:"payment_due_date"`
+	Created_At       time.Time          `json:"created_at"`
+	Updated_At       time.Time          `json:"updated_at"`
+}
+```
+
+### API Endpoints
+
+##### 1. Add Invoice
+> Endpoint: /invoices
+> <br>
+> Method: POST
+> <br>
+> Request Payload:
+```
+{
+  "order_id": "65b2b4f5fbd59435a63c8b9d",
+  "payment_method": "CASH",
+  "payment_status": "PAID"
+}
+```
+
+##### 2. Get Invoices
+> Endpoint: /invoices
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "ID": "65b2b3957868ff027182d290",
+    "invoice_id": "65b2b3957868ff027182d290",
+    "order_id": "65b2752ea49b7ceff6bdeea2",
+    "payment_method": "CASH",
+    "payment_status": "PAID",
+    "payment_due_date": "2024-01-26T19:16:37Z",
+    "created_at": "2024-01-25T19:16:37Z",
+    "updated_at": "2024-01-25T19:16:37Z"
+  },
+  {
+    "ID": "65b2b524fbd59435a63c8ba1",
+    "invoice_id": "65b2b524fbd59435a63c8ba1",
+    "order_id": "65b2b4f5fbd59435a63c8b9d",
+    "payment_method": "CARD",
+    "payment_status": "PAID",
+    "payment_due_date": "2024-01-26T19:23:16Z",
+    "created_at": "2024-01-25T19:23:16Z",
+    "updated_at": "2024-01-25T19:33:17Z"
+  }
+]
+```
+
+##### 3. Get Invoice
+> Endpoint: /invoices/:invoice_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+{
+  "Invoice_ID": "65b2b524fbd59435a63c8ba1",
+  "Payment_Method": "CARD",
+  "Order_ID": "65b2b4f5fbd59435a63c8b9d",
+  "Payment_Status": "PAID",
+  "Payment_Due": 3150,
+  "Table_Number": 1,
+  "Payment_Due_Date": "2024-01-26T19:23:16Z",
+  "Order_Details": [
+    {
+      "amount": 350,
+      "food_image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D",
+      "food_name": "Paneer Tikka",
+      "order_id": "65b2b4f5fbd59435a63c8b9d",
+      "price": 350,
+      "quantity": 9,
+      "table_id": "65b265c798cd2627196bf909",
+      "table_number": 1,
+      "total_price_per_item": 3150
+    }
+  ]
+}
+```
+
+
+##### 4. Update Invoice
+> Endpoint: /invoices/:invoice_id
+> <br>
+> Method: PATCH
+> <br>
+> Request Payload:
+```
+{
+    "payment_method": "CARD"
+}
+```

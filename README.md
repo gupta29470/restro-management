@@ -378,3 +378,109 @@ type Food struct {
 }
 ```
 
+
+<br>
+<br>
+
+## Table
+
+### Table Model
+
+```
+type Table struct {
+	ID               primitive.ObjectID `bson:"_id"`
+	Number_Of_Guests *int               `json:"number_of_guests" validate:"required"`
+	Table_Number     *int               `json:"table_number" validate:"required"`
+	Created_At       time.Time          `json:"created_at"`
+	Updated_At       time.Time          `json:"updated_at"`
+	Table_ID         string             `json:"table_id"`
+}
+```
+
+### API Endpoints
+
+##### 1. Add Table
+> Endpoint: /tables
+> <br>
+> Method: POST
+> <br>
+> Request Payload:
+```
+{
+  "number_of_guests": 2,
+  "table_number": 3
+}
+```
+
+##### 2. Get Tables
+> Endpoint: /tables
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "_id": "65b265c798cd2627196bf909",
+    "created_at": "2024-01-25T13:44:39Z",
+    "number_of_guests": 4,
+    "table_id": "65b265c798cd2627196bf909",
+    "table_number": 1,
+    "updated_at": "2024-01-25T13:44:39Z"
+  },
+  {
+    "_id": "65b265d298cd2627196bf90b",
+    "created_at": "2024-01-25T13:44:50Z",
+    "number_of_guests": 6,
+    "table_id": "65b265d298cd2627196bf90b",
+    "table_number": 4,
+    "updated_at": "2024-01-25T13:44:50Z"
+  },
+  {
+    "_id": "65b265d898cd2627196bf90d",
+    "created_at": "2024-01-25T13:44:56Z",
+    "number_of_guests": 2,
+    "table_id": "65b265d898cd2627196bf90d",
+    "table_number": 3,
+    "updated_at": "2024-01-25T13:44:56Z"
+  },
+  {
+    "_id": "65f09936ac33ec1b6edadd26",
+    "created_at": "2024-03-12T18:04:38Z",
+    "number_of_guests": 2,
+    "table_id": "65f09936ac33ec1b6edadd26",
+    "table_number": 3,
+    "updated_at": "2024-03-12T18:04:38Z"
+  }
+]
+```
+
+##### 3. Get Table
+> Endpoint: /tables/:table_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+{
+  "ID": "65b265d298cd2627196bf90b",
+  "number_of_guests": 6,
+  "table_number": 4,
+  "created_at": "2024-01-25T13:44:50Z",
+  "updated_at": "2024-01-25T13:44:50Z",
+  "table_id": "65b265d298cd2627196bf90b"
+}
+```
+
+
+##### 4. Update Table
+> Endpoint: /tables/:table_id
+> <br>
+> Method: PATCH
+> <br>
+> Request Payload:
+```
+{
+  "table_number": 4
+}
+```

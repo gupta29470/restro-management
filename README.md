@@ -606,3 +606,218 @@ type Order struct {
   "table_id": "65b265d898cd2627196bf90d"
 }
 ```
+
+<br>
+<br>
+
+## Order Item
+
+### Order Item Model
+
+```
+type OrderItem struct {
+	ID            primitive.ObjectID `bson:"_id"`
+	Quantity      *int               `json:"quantity" validate:"required"`
+	Unit_Price    *float64           `json:"unit_price" validate:"required"`
+	Created_At    time.Time          `json:"created_at"`
+	Updated_At    time.Time          `json:"updated_at"`
+	Food_ID       *string            `json:"food_id" validate:"required"`
+	Order_Item_ID string             `json:"order_item_id"`
+	Order_ID      string             `json:"order_id" validate:"required"`
+}
+```
+
+### API Endpoints
+
+##### 1. Add Order Item
+> Endpoint: /orderItems
+> <br>
+> Method: POST
+> <br>
+> Request Payload:
+```
+{
+  "Table_ID": "65b265c798cd2627196bf909",
+  "Order_Items": [
+    {
+      "quantity": 9,
+      "unit_price": 439,
+      "food_id": "65b262d5d116a73f754f6c39"
+      
+    }
+  ]
+}
+```
+
+##### 2. Get Order Items
+> Endpoint: /ordersItems
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "ID": "65b27f9746d3acb9cc427e53",
+    "quantity": 3,
+    "unit_price": 329,
+    "created_at": "2024-01-25T15:34:47Z",
+    "updated_at": "2024-01-25T15:40:25Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b27f9746d3acb9cc427e53",
+    "order_id": "65b27f9746d3acb9cc427e51"
+  },
+  {
+    "ID": "65b27fce46d3acb9cc427e57",
+    "quantity": 1,
+    "unit_price": 339,
+    "created_at": "2024-01-25T15:35:42Z",
+    "updated_at": "2024-01-25T15:35:42Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b27fce46d3acb9cc427e57",
+    "order_id": "65b27fce46d3acb9cc427e55"
+  },
+  {
+    "ID": "65b2a9ea0852a63be232d137",
+    "quantity": 6,
+    "unit_price": 339,
+    "created_at": "2024-01-25T18:35:22Z",
+    "updated_at": "2024-01-25T18:35:22Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2a9ea0852a63be232d137",
+    "order_id": "65b2a9ea0852a63be232d135"
+  },
+  {
+    "ID": "65b2ab1bbedbb39940327343",
+    "quantity": 6,
+    "unit_price": 339,
+    "created_at": "2024-01-25T18:40:27Z",
+    "updated_at": "2024-01-25T18:40:27Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2ab1bbedbb39940327343",
+    "order_id": "65b2ab1bbedbb39940327341"
+  },
+  {
+    "ID": "65b2ac2c135f3652cb1536a8",
+    "quantity": 6,
+    "unit_price": 339,
+    "created_at": "2024-01-25T18:45:00Z",
+    "updated_at": "2024-01-25T18:45:00Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2ac2c135f3652cb1536a8",
+    "order_id": "65b2ac2c135f3652cb1536a6"
+  },
+  {
+    "ID": "65b2ac9e135f3652cb1536ae",
+    "quantity": 4,
+    "unit_price": 339,
+    "created_at": "2024-01-25T18:46:54Z",
+    "updated_at": "2024-01-25T18:46:54Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2ac9e135f3652cb1536ae",
+    "order_id": "65b2ac9e135f3652cb1536ac"
+  },
+  {
+    "ID": "65b2ae6b6000b8f5d173753d",
+    "quantity": 4,
+    "unit_price": 339,
+    "created_at": "2024-01-25T18:54:35Z",
+    "updated_at": "2024-01-25T18:54:35Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2ae6b6000b8f5d173753d",
+    "order_id": "65b2ae6b6000b8f5d173753b"
+  },
+  {
+    "ID": "65b2b4cbfbd59435a63c8b9b",
+    "quantity": 4,
+    "unit_price": 339,
+    "created_at": "2024-01-25T19:21:47Z",
+    "updated_at": "2024-01-25T19:21:47Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2b4cbfbd59435a63c8b9b",
+    "order_id": "65b2b4cbfbd59435a63c8b99"
+  },
+  {
+    "ID": "65b2b4f5fbd59435a63c8b9f",
+    "quantity": 9,
+    "unit_price": 439,
+    "created_at": "2024-01-25T19:22:29Z",
+    "updated_at": "2024-01-25T19:22:29Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65b2b4f5fbd59435a63c8b9f",
+    "order_id": "65b2b4f5fbd59435a63c8b9d"
+  },
+  {
+    "ID": "65f09bc1ac33ec1b6edadd2c",
+    "quantity": 9,
+    "unit_price": 439,
+    "created_at": "2024-03-12T18:15:29Z",
+    "updated_at": "2024-03-12T18:15:29Z",
+    "food_id": "65b262d5d116a73f754f6c39",
+    "order_item_id": "65f09bc1ac33ec1b6edadd2c",
+    "order_id": "65f09bc1ac33ec1b6edadd2a"
+  }
+]
+```
+
+##### 3. Get Order Item
+> Endpoint: /orderItems/:order_item_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+{
+  "ID": "65b27fce46d3acb9cc427e57",
+  "quantity": 1,
+  "unit_price": 339,
+  "created_at": "2024-01-25T15:35:42Z",
+  "updated_at": "2024-01-25T15:35:42Z",
+  "food_id": "65b262d5d116a73f754f6c39",
+  "order_item_id": "65b27fce46d3acb9cc427e57",
+  "order_id": "65b27fce46d3acb9cc427e55"
+}
+```
+
+##### 4. Get Items By Order
+> Endpoint: /orderItems-order/:order_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "order_items": [
+      {
+        "amount": 350,
+        "food_image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D",
+        "food_name": "Paneer Tikka",
+        "order_id": "65b2b4f5fbd59435a63c8b9d",
+        "price": 350,
+        "quantity": 9,
+        "table_id": "65b265c798cd2627196bf909",
+        "table_number": 1,
+        "total_price_per_item": 3150
+      }
+    ],
+    "payment_due": 3150,
+    "table_number": 1,
+    "total_count": 1
+  }
+]
+```
+
+
+##### 5. Update Order Item
+> Endpoint: /orderItems/:order_item_id
+> <br>
+> Method: PATCH
+> <br>
+> Request Payload:
+```
+{
+  "quantity": 3,
+  "unit_price": 329
+}
+```

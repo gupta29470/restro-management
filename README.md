@@ -277,3 +277,104 @@ type Menu struct {
   "category": "Punjabi"
 }
 ```
+
+<br>
+<br>
+
+## Food
+
+### Food Model
+
+```
+type Food struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Name       *string            `json:"name" validate:"required,min=2,max=100"`
+	Price      *float64           `json:"price" validate:"required"`
+	Food_Image *string            `json:"food_image" validate:"required"`
+	Created_At time.Time          `json:"created_at"`
+	Updated_At time.Time          `json:"updated_at"`
+	Food_ID    string             `json:"food_id"`
+	Menu_ID    *string            `json:"menu_id" validate:"required"`
+}
+```
+
+### API Endpoints
+
+##### 1. Add Food
+> Endpoint: /foods
+> <br>
+> Method: POST
+> <br>
+> Request Payload:
+```
+{
+  "name": "Dahi Cham Cham",
+  "price": 350,
+  "food_image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D",
+  "menu_id": "65b260f2d116a73f754f6c37"
+}
+```
+
+##### 2. Get Foods
+> Endpoint: /foods
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "ID": "65b36e21d1bf83f8fe68f3bb",
+    "name": "Dahi Vade",
+    "price": 350,
+    "food_image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D",
+    "created_at": "2024-01-26T08:32:33Z",
+    "updated_at": "2024-01-26T08:32:33Z",
+    "food_id": "65b36e21d1bf83f8fe68f3bb",
+    "menu_id": "65b260f2d116a73f754f6c37"
+  },
+  {
+    "ID": "65b36e29d1bf83f8fe68f3bd",
+    "name": "Dahi Cham Cham",
+    "price": 350,
+    "food_image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D",
+    "created_at": "2024-01-26T08:32:41Z",
+    "updated_at": "2024-01-26T08:32:41Z",
+    "food_id": "65b36e29d1bf83f8fe68f3bd",
+    "menu_id": "65b260f2d116a73f754f6c37"
+  }
+]
+```
+
+##### 3. Get Food
+> Endpoint: /foods/:food_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+{
+  "ID": "65b26324d116a73f754f6c3b",
+  "name": "Kalimiri Kabab",
+  "price": 339,
+  "food_image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D",
+  "created_at": "2024-01-25T13:33:24Z",
+  "updated_at": "2024-01-25T13:40:22Z",
+  "food_id": "65b26324d116a73f754f6c3b",
+  "menu_id": "65b260f2d116a73f754f6c37"
+}
+```
+
+
+##### 4. Update Food
+> Endpoint: /foods/:food_id
+> <br>
+> Method: PATCH
+> <br>
+> Request Payload:
+```
+{
+  "price": 339
+}
+```
+

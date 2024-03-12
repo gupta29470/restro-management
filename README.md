@@ -1,6 +1,6 @@
 # golang-restaurant-management
 
-##User
+## User
 
 ### User Model
 

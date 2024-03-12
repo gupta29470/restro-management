@@ -484,3 +484,125 @@ type Table struct {
   "table_number": 4
 }
 ```
+
+<br>
+<br>
+
+## Order
+
+### Order Model
+
+```
+type Order struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Order_Date time.Time          `json:"order_date" validate:"required"`
+	Created_At time.Time          `json:"created_at"`
+	Updated_At time.Time          `json:"updated_at"`
+	Order_ID   string             `json:"order_id"`
+	Table_ID   *string            `json:"table_id" validate:"required"`
+}
+```
+
+### API Endpoints
+
+##### 1. Add Order
+> Endpoint: /orders
+> <br>
+> Method: POST
+> <br>
+> Request Payload:
+```
+{
+  "order_date": "2024-02-25T15:30:00Z",
+  "table_id": "65b265d298cd2627196bf90b"
+}
+```
+
+##### 2. Get Orders
+> Endpoint: /orders
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "ID": "65b2752ea49b7ceff6bdeea2",
+    "order_date": "2024-01-25T15:30:00Z",
+    "created_at": "2024-01-25T14:50:22Z",
+    "updated_at": "2024-01-25T14:50:22Z",
+    "order_id": "65b2752ea49b7ceff6bdeea2",
+    "table_id": "65b265c798cd2627196bf909"
+  },
+  {
+    "ID": "65b27577a49b7ceff6bdeea4",
+    "order_date": "2024-02-25T15:30:00Z",
+    "created_at": "2024-01-25T14:51:35Z",
+    "updated_at": "2024-01-25T14:58:10Z",
+    "order_id": "65b27577a49b7ceff6bdeea4",
+    "table_id": "65b265d898cd2627196bf90d"
+  },
+  {
+    "ID": "65b2ac2c135f3652cb1536a6",
+    "order_date": "2024-01-25T18:45:00Z",
+    "created_at": "2024-01-25T18:45:00Z",
+    "updated_at": "2024-01-25T18:45:00Z",
+    "order_id": "65b2ac2c135f3652cb1536a6",
+    "table_id": "65b265c798cd2627196bf909"
+  },
+  {
+    "ID": "65b2b4cbfbd59435a63c8b99",
+    "order_date": "2024-01-25T19:21:47Z",
+    "created_at": "2024-01-25T19:21:47Z",
+    "updated_at": "2024-01-25T19:21:47Z",
+    "order_id": "65b2b4cbfbd59435a63c8b99",
+    "table_id": "65b265c798cd2627196bf909"
+  },
+  {
+    "ID": "65b2b4f5fbd59435a63c8b9d",
+    "order_date": "2024-01-25T19:22:29Z",
+    "created_at": "2024-01-25T19:22:29Z",
+    "updated_at": "2024-01-25T19:22:29Z",
+    "order_id": "65b2b4f5fbd59435a63c8b9d",
+    "table_id": "65b265c798cd2627196bf909"
+  },
+  {
+    "ID": "65f09a9bac33ec1b6edadd28",
+    "order_date": "2024-02-25T15:30:00Z",
+    "created_at": "2024-03-12T18:10:35Z",
+    "updated_at": "2024-03-12T18:10:35Z",
+    "order_id": "65f09a9bac33ec1b6edadd28",
+    "table_id": "65b265d298cd2627196bf90b"
+  }
+]
+```
+
+##### 3. Get Order
+> Endpoint: /orders/:order_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+{
+  "ID": "65b27577a49b7ceff6bdeea4",
+  "order_date": "2024-02-25T15:30:00Z",
+  "created_at": "2024-01-25T14:51:35Z",
+  "updated_at": "2024-01-25T14:58:10Z",
+  "order_id": "65b27577a49b7ceff6bdeea4",
+  "table_id": "65b265d898cd2627196bf90d"
+}
+```
+
+
+##### 4. Update Order
+> Endpoint: /orders/:order_id
+> <br>
+> Method: PATCH
+> <br>
+> Request Payload:
+```
+{
+  "table_id": "65b265d898cd2627196bf90d"
+}
+```

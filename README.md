@@ -178,3 +178,102 @@ type User struct {
   "user_id": "65b1d66a0754e4fbd10025f5"
 }
 ```
+
+<br>
+<br>
+
+## Menu
+
+### Menu Model
+
+```
+type Menu struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Name       string             `json:"name" validate:"required"`
+	Category   string             `json:"category" validate:"required"`
+	Start_Date *time.Time         `json:"start_date"`
+	End_Date   *time.Time         `json:"end_date"`
+	Created_At time.Time          `json:"created_at"`
+	Updated_At time.Time          `json:"updated_at"`
+	Menu_ID    string             `json:"menu_id"`
+}
+```
+
+### API Endpoints
+
+##### 1. Add Menu
+> Endpoint: /menus
+> <br>
+> Method: POST
+> <br>
+> Request Payload:
+```
+{
+  "name": "Food",
+  "category": "Mughlai"
+}
+```
+
+##### 2. Get Menus
+> Endpoint: /menus
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+[
+  {
+    "_id": "65b1dda4d116a73f754f6c35",
+    "category": "Punjabi",
+    "created_at": "2024-01-25T04:03:48Z",
+    "end_date": null,
+    "menu_id": "65b1dda4d116a73f754f6c35",
+    "name": "Food",
+    "start_date": null,
+    "updated_at": "2024-01-25T13:26:39Z"
+  },
+  {
+    "_id": "65b260f2d116a73f754f6c37",
+    "category": "Mughlai",
+    "created_at": "2024-01-25T13:24:02Z",
+    "end_date": null,
+    "menu_id": "65b260f2d116a73f754f6c37",
+    "name": "Food",
+    "start_date": null,
+    "updated_at": "2024-01-25T13:24:02Z"
+  }
+]
+```
+
+##### 3. Get Menu
+> Endpoint: /menus/:menu_id
+> <br>
+> Method: GET
+> <br>
+> Response:
+```
+{
+  "ID": "65b260f2d116a73f754f6c37",
+  "name": "Food",
+  "category": "Mughlai",
+  "start_date": null,
+  "end_date": null,
+  "created_at": "2024-01-25T13:24:02Z",
+  "updated_at": "2024-01-25T13:24:02Z",
+  "menu_id": "65b260f2d116a73f754f6c37"
+}
+```
+
+
+##### 4. Update Menu
+> Endpoint: /menus/:menu_id
+> <br>
+> Method: PATCH
+> <br>
+> Request Payload:
+```
+{
+  "name": "Food",
+  "category": "Punjabi"
+}
+```
